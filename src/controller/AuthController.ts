@@ -1,4 +1,8 @@
-import { Get, Query, Route, Tags } from "tsoa";
+ /*export function Register(req: any, res: any) {
+   console.log("Se ha realizago el resgistro satisfactoriamente");
+   res.status(200).send({msg: "Todo OK"});
+ }*/
+ import { Get, Query, Route, Tags } from "tsoa";
 import { BasicResponse } from "./types";
 import { IHelloController } from "./interfaces";
 import { LogSucces } from "../utils/logger";
