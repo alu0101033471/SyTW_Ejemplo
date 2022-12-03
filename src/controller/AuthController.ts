@@ -1,5 +1,6 @@
 import User from '../models/user'
 import bcrypt from 'bcrypt';
+import jwt from '../utils/jwt';
 
 export function Register(req: any, res: any) {
   //Obtención de los datos ingresados
@@ -39,6 +40,34 @@ export function Register(req: any, res: any) {
       res.status(400).send({msg: "Error en la creación del usuario"});
     } else {
       res.status(200).send(userStorage);
+    }
+  });
+}
+
+export function Login(req: any, res: any){
+  const {email, password} = req.body;
+
+  if(!email) res.status(400).send({msg: "El email es un campo obligatorio"});
+  if(!password) res.status(400).send({msg: "La contraseña es un campo obligatorio"});
+  
+  const emailLowerCase = email.toLowerCase();
+
+  User.findOne({email: emailLowerCase}, (error, userStore) => {
+    if(error){
+      res.status(500).send({msg: "Error del servidor"});
+    } else {
+      bcrypt.compare(password, userStore.password,(bcryptError, check) => {
+        if(bcryptError){
+        res.status(500).send({msg:"Error del servidor"});
+        } else if(!check) {
+          res.status(400).send({ msg: "Alguno de los dos campos es erroneo"});
+        } else {
+          res.status(200).send({
+            access: jwt.createAccessToken(userStore),
+            refresh: jwt.createRefreshToken(userStore)
+          });
+        }
+      })
     }
   });
 }

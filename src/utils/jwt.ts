@@ -36,3 +36,9 @@ export function createRefreshToken(user:any){
 export function decoded(token: any){
     return jwt.decode(token, {complete: true});
 }
+
+export default {
+  createAccessToken,
+  createRefreshToken,
+  decoded
+}

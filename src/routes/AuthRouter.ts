@@ -1,11 +1,12 @@
- import express from 'express';
- import { Register } from '../controller/AuthController'
+import express from 'express';
+import { Register} from '../controller/AuthController'
 
- //Router from express
- const authRouter = express.Router();
+ 
+//Router from express
+const authRouterRegister = express.Router();
 
- authRouter.route('/')
+authRouterRegister.route('/')
      .post(Register)
 
- export default authRouter;
-
+ export default authRouterRegister;
+ 
