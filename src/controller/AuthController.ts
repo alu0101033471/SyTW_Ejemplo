@@ -73,10 +73,30 @@ export function Login(req: any, res: any){
 }
 
 
+export function RefreshAccessToken(req: any, res:any) {
+  const {token} = req.body;
+  console.log("TOKEN:", token);
+
+  const user_id  = jwt.decoded(token);
+  console.log("USER:", user_id);
+
+  if(!token) res.status(400).send({msg: "Token requerido"});
+
+  User.findOne({user_id: user_id}, (error, userStorage) => {
+    if (error) {
+      res.status(500).send({msg: "Error del Servidor"});
+    } else {
+      res.status(200).send({
+        accessToken: jwt.createAccessToken(userStorage)
+      });
+    }
+  });
+}
 
 export default {
   Register,
-  Login
+  Login,
+  RefreshAccessToken
 }
 
 /*
