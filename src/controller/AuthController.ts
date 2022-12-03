@@ -73,6 +73,12 @@ export function Login(req: any, res: any){
 }
 
 
+
+export default {
+  Register,
+  Login
+}
+
 /*
 {
     "nombreUsuario": "Juan123",

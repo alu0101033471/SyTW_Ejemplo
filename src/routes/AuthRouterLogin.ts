@@ -1,12 +1,12 @@
 import express from 'express';
-import {Login} from '../controller/AuthController'
+import auth from '../controller/AuthController'
 
  
 //Router from express
 const authRouterLogin = express.Router();
 
 authRouterLogin.route('/')
-     .post(Login)
+     .post(auth.Login)
 
  export default  authRouterLogin;
  
