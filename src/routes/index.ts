@@ -5,7 +5,7 @@
 
 import express, { Request, Response } from "express";
 import helloRouter from "./HelloRouter";
-//import authRouter from "./AuthRouter";
+import authRouter from "./AuthRouter";
 import { LogInfo } from "../utils/logger";
 
 // Server instance
@@ -28,7 +28,7 @@ rootRouter.get('/', (req: Request, res: Response) => {
 //Redireciones a router 
 server.use('/', rootRouter); // http://localhost:8000/api/
 server.use('/hello', helloRouter); // http://localhost:8000/api/hello --> HelloRouter
-//server.use('/auth/register', authRouter); // http://localhost:8000/api/auth/register --> AuthRouter
+server.use('/auth/register', authRouter); // http://localhost:8000/api/auth/register --> AuthRouter
 //añadir mas routas a la app
 
 export default server;

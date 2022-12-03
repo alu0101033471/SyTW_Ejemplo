@@ -1,5 +1,5 @@
-/* import {Schema, model, trusted} from "mongoose";
-import { describe } from "node:test";
+// import {Schema, model, trusted} from "mongoose";
+// import { describe } from "node:test";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
@@ -31,15 +31,16 @@ const userSchema = new mongoose.Schema({
     trim: true,
   },
   comicLeidos:[{
-   id: String
+    type: String
   }],
   comicFav:[{
     id: String
-   }],
-   personajeFav:[{
-    id: String
-   }]
+  }],
+  personajeFav:[{
+  id: String
+  }]
 }, {versionKey: false,
   timestamps: true});
 
-module.exports = mongoose.model('user', userSchema) */
+const User = mongoose.model('User', userSchema);
+export default User;
