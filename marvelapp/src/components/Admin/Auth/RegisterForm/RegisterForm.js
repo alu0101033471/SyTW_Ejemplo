@@ -2,18 +2,26 @@ import React, {useState} from 'react';
 import {Form} from "semantic-ui-react";
 import "./RegisterForm.scss";
 import {useFormik} from "formik";
-import {initialValues} from "./RegisterForm.form";
+import {Auth} from "../../../../api"
+import {initialValues, validationSchema} from "./RegisterForm.form";
 import "./RegisterForm.scss";
 
-export  function RegisterForm() {
+const authController = new Auth();
+
+export  function RegisterForm(props) {
+  const {openLogin} = props;
   const[error, setError] = useState("");
   const formik = useFormik({
     initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    validationOnChange: false,
     onSubmit: async (formValue) => {
         try {
-            console.log(formValue)
+          setError("");
+          await authController.register(formValue);
+          openLogin();
         } catch (error) {
-            console.error(error)
+          setError("Error en el servidor");
         }
     }
   })
@@ -24,6 +32,7 @@ export  function RegisterForm() {
           placeholder="Correo electronico"
           onChange={formik.handleChange} 
           values={formik.values.email}
+          error={formik.errors.email}
         />
         <Form.Input 
           name="password" 
@@ -31,6 +40,7 @@ export  function RegisterForm() {
           placeholder="Contraseña" 
           onChange={formik.handleChange} 
           values={formik.values.password}
+          error={formik.errors.password}
         />
         <Form.Input 
           name="repeatPassword" 
@@ -38,6 +48,7 @@ export  function RegisterForm() {
           placeholder="Repetir Contraseña" 
           onChange={formik.handleChange} 
           values={formik.values.repeatPassword}
+          error={formik.errors.repeatPassword}
         />
         <Form.Checkbox 
           name="conditionAccepted" 
@@ -46,6 +57,7 @@ export  function RegisterForm() {
             formik.setFieldValue("conditionAccepted", data.checked)
         }
           checked={formik.values.conditionAccepted}
+          error={formik.errors.conditionAccepted}
         />
         <Form.Button type="submit" primary fluid loading={formik.isSubmitting}>
             Crear cuenta

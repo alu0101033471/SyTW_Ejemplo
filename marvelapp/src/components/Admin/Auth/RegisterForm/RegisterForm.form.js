@@ -14,6 +14,8 @@ export function validationSchema() {
         email: Yup.string()
         .email("El email no es valido")
         .required("Campo obligatorio"),
-        password: Yup.string().required
-    })
+        password: Yup.string().required("Campo obligatorio"),
+        repeatPassword: Yup.string().required("Campo obligatorio").oneOf([Yup.ref("password")], "Las contraseñas deben coincidir"),
+        conditionAccepted: Yup.bool().isTrue(true),
+    });
 }
