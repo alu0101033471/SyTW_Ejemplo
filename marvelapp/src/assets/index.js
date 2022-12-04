@@ -8,7 +8,7 @@ const Icon = {
 
 const image = {
   marvel_icon,
-  deadpool_venom
+  deadpool_venom,
 };
 
 export {Icon, image};

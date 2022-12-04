@@ -1,5 +1,17 @@
 @import "~/src/scss/index.scss";
 
 .auth{
-    background-color: crimson;
+    background-image: url("../../../assets/jpg/background.jpg");
+    min-height: 100vh;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+    .logo{
+        width: 200px;
+        margin-bottom: 30px;
+    }
+    
 }
