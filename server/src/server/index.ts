@@ -27,7 +27,9 @@ server.use(bodyParser.json());
 //a apartir de ahora tenemos http://localhost:8000/api/...
 server.use(
   '/api', rootRouter
-  )
+  );
+
+//server.use( '/admin', rootRouter);
 
 //Configuracion de la carpeta de estáticos
 // * OPcion del pingu -> server.use(express.static("../uploads"));
@@ -46,8 +48,26 @@ mongoose.connect(
   //import swaggerUi from 'swagger-ui-express';
 
   // Seguridad configuracion
-  server.use(helmet());
-  server.use(cors());
+server.use(helmet());
+  //server.use( cors({ origin: true, credentials: true  }) );
+  //server.use(cors<Request>());
+// server.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+//   res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+//   next();
+// });
+server.use(cors());
+
+  /*const allowedOrigins = ['http://localhost:3000'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};*/
+
+// Then pass these options to cors:
+//server.use(cors(options));
 
   //Configuracion de los routings
   //server.use()
