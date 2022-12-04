@@ -34,7 +34,7 @@ server.use(
 //Configuracion de la carpeta de estáticos
 // * OPcion del pingu -> server.use(express.static("../uploads"));
 server.use(express.static("public"));
-
+server.use(cors());
 //TODO Moongose Connection
 mongoose.connect(
   `mongodb+srv://${db_user}:${db_pass}@${db_uri}`,
@@ -58,7 +58,7 @@ server.use(helmet());
 //   res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
 //   next();
 // });
-server.use(cors());
+
 
   /*const allowedOrigins = ['http://localhost:3000'];
 
