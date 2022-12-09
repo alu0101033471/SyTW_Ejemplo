@@ -34,27 +34,27 @@ export class Auth {
     }
   }
 
-  // async login(data) {
+   async login(data) {
   //   // eslint-disable-next-line no-undef
-  //   try {
-  //     const url = `${this.baseapi}/${ENV.API_ROUTES.LOGIN}`;
-  //     const params = {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data)
-  //     };
-  //     console.log(url);
+     try {
+       const url = `${this.baseapi}/${ENV.API_ROUTES.LOGIN}`;
+       const params = {
+         method: "POST",
+        headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(data)
+       };
+       console.log(url);
 
-  //     console.log(params);
-  //     const response = await fetch(url, params);
-  //     const result = await response.json();
+       console.log(params);
+       const response = await fetch(url, params);
+       const result = await response.json();
 
-  //     if(response.status !== 200) throw result;
-  //       return result;
-  //   } catch (error) {
-  //       throw error;
-  //   }
-  // };
+       if(response.status !== 200) throw result;
+         return result;
+     } catch (error) {
+         throw error;
+     }
+   };
 }
